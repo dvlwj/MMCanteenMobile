@@ -3,12 +3,14 @@ package com.malvin.mmcanteen.utility
 import android.content.Context
 
 class SessionManagement(context: Context?) {
-    private val sharedPrefName = "MMCanteen"
-    private val keyUsername    = "user_username"
-    private val keyPassword    = "user_password"
-    private val keyToken       = "user_token"
-    private val keyRole        = "user_role"
-    private val keyUserID      = "user_userid"
+
+    private val sharedPrefName   = "MMCanteen"
+    private val keyUsername      = "user_username"
+    private val keyPassword      = "user_password"
+    private val keyToken         = "user_token"
+    private val keyRole          = "user_role"
+    private val keyUserID        = "user_userid"
+    private val keyServerAddress = "server_address"
     private val sharedPrefs= context?.getSharedPreferences(sharedPrefName, Context.MODE_PRIVATE)
     private val sharedPrefsEditor= sharedPrefs?.edit()
 
@@ -32,19 +34,11 @@ class SessionManagement(context: Context?) {
         sharedPrefsEditor?.putString(keyUserID,value)
         sharedPrefsEditor?.apply()
     }
-    fun checkUsername(key: String?):String?{
-        return sharedPrefs?.getString(key,null)
+    fun updateServerAddress(value: String?){
+        sharedPrefsEditor?.putString(keyServerAddress,value)
+        sharedPrefsEditor?.apply()
     }
-    fun checkPassword(key: String?):String?{
-        return sharedPrefs?.getString(key,null)
-    }
-    fun checkToken(key: String?):String?{
-        return sharedPrefs?.getString(key,null)
-    }
-    fun checkRole(key: String?):String?{
-        return sharedPrefs?.getString(key,null)
-    }
-    fun checkUserID(key: String?):String?{
+    fun checkData(key: String?):String?{
         return sharedPrefs?.getString(key,null)
     }
     fun clearData(){

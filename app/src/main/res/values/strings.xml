@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MMCanteen</string>
+
+    <string name="username">Username</string>
+    <string name="username_hint">Username anda</string>
+    <string name="username_error">Username salah</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Password anda</string>
+    <string name="password_error">Password salah</string>
+    <string name="login">Login</string>
+    <string name="server_config">Konfigurasi Server</string>
 </resources>

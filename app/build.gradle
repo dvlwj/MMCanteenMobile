@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-android:1.16.0'
     implementation 'com.beust:klaxon:3.0.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
