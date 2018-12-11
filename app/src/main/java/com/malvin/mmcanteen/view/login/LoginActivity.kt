@@ -6,12 +6,12 @@ import android.view.View
 import android.view.Window
 import com.malvin.mmcanteen.R
 import com.malvin.mmcanteen.model.login.LoginModel
-import com.malvin.mmcanteen.presenter.login.LoginPresenter
+import com.malvin.mmcanteen.viewmodel.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), LoginView{
 
-    private val presenter = LoginPresenter(this, LoginModel())
+    private val presenter = LoginViewModel(this, LoginModel())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
