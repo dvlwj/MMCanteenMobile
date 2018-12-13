@@ -10,12 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <data>
-            <import android:type="android.view.View" />
-            <variable
-                android:name="viewModel"
-                android:type="com.malvin.mmcanteen.viewmodel.login.LoginViewModel" />
-        </data>
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
@@ -35,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
             android:layout_gravity="center"
-            android:src="@drawable/logo_MW"
+            android:src="@drawable/logo_mw"
             android:layout_marginBottom="@dimen/_10sdp"
             android:contentDescription="@string/app_name"/>
         <android.support.design.widget.TextInputLayout
