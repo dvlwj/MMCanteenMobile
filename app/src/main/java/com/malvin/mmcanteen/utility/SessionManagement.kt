@@ -5,11 +5,11 @@ import android.content.Context
 class SessionManagement(context: Context?) {
 
     private val sharedPrefName   = "MMCanteen"
-    private val keyUsername      = "user_username"
-    private val keyPassword      = "user_password"
-    private val keyToken         = "user_token"
-    private val keyRole          = "user_role"
-    private val keyUserID        = "user_userid"
+    val keyUsername      = "user_username"
+    val keyPassword      = "user_password"
+    val keyToken         = "user_token"
+    val keyRole          = "user_role"
+    val keyUserID        = "user_userid"
     val keyServerAddress = "server_address"
     private val sharedPrefs= context?.getSharedPreferences(sharedPrefName, Context.MODE_PRIVATE)
     private val sharedPrefsEditor= sharedPrefs?.edit()

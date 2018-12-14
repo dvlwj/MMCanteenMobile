@@ -8,6 +8,8 @@ import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
@@ -18,7 +20,6 @@ import com.malvin.mmcanteen.utility.FeedbackManagement
 import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_login.*
-
 
 
 class LoginActivity : AppCompatActivity() {
@@ -72,12 +73,39 @@ class LoginActivity : AppCompatActivity() {
         val no = resources.getString(R.string.no)
         val fbM = FeedbackManagement(this)
         progressbar.progress = 0
-        Fuel.post(address, dataServer).timeout(10000).responseJson { request, response, result ->
+        Fuel.post(address, dataServer).timeout(10000).responseJson { _, response, result ->
 //        address.httpPost().header("Content-Type" to "application/json").body(dataServer.toString()).timeout(10000).responseJson { request, response, result ->
-        println("request : $request \n respon : $response")
-            val respond = response.toString()
+//        println("request : $request \n respon : $response")
             result.success {
-                fbM.showToastShort(String(response.data))
+
+//                check ulang blok kode ini
+                val json = Parser().parse(StringBuilder(String(response.data))) as JsonObject
+                when (json.string("msg")){
+                    "User signin" -> {
+                        session.run {
+                            updateUsername(session.keyUsername)
+                            updateRole(session.keyRole)
+                            updateUserID(session.keyUserID)
+                            updateToken(session.keyToken)
+                        }
+                        fbM.showToastLong(resources.getString(R.string.login_success))
+//                        open main activity here
+                    }
+                    "Username or Password are incorrect" -> {
+                        fbM.showToastLong(resources.getString(R.string.login_failed))
+                    }
+                    else-> {
+                        val dialog = AlertDialog.Builder(this)
+                        dialog.setCancelable(false)
+                        dialog.setTitle(resources.getString(R.string.error))
+                        dialog.setMessage(resources.getString(R.string.login_error))
+                        dialog.setNeutralButton(yes) { DialogInterface, _ ->
+                            DialogInterface.dismiss()
+                        }
+                        dialog.create().show()
+                    }
+                }
+//                fbM.showToastShort(String(response.data))
                 progressbar?.visibility = View.GONE
                 button_login?.isEnabled = true
             }

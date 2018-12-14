@@ -12,7 +12,7 @@
     <string name="server_hint">Alamat server anda</string>
     <string name="server_empty">Alamat server belum diisi</string>
     <string name="server_error">Alamat server salah</string>
-    <string name="server_same">Alamat server tidak berubah</string>
+    <string name="server_same">Alamat server tidak memiliki perbedaan</string>
     <string name="login">Login</string>
     <string name="server_config">Konfigurasi Server</string>
     <string name="connection_failed">Koneksi gagal</string>
@@ -24,4 +24,8 @@
     <string name="success_save">Sukses menyimpan</string>
     <string name="failed_save">Gagal menyimpan</string>
     <string name="http">http://</string>
+    <string name="login_success">Login sukses dilakukan</string>
+    <string name="login_failed">Username atau password salah</string>
+    <string name="login_error">Proses login gagal. Silahkan coba lagi</string>
+    <string name="error">Terjadi Masalah</string>
 </resources>
