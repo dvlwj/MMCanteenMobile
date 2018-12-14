@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
         progressbar?.visibility = View.VISIBLE
         button_login?.isEnabled = false
         val session = SessionManagement(this)
-        val address = ServerAddress.http + session.checkServerAddress(session.keyServerAddress) + ServerAddress.Login
+        val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Login}"
         val dataServer = listOf("username" to username, "password" to password)
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)

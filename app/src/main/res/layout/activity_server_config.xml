@@ -13,16 +13,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="horizontal"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp">
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/http"/>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/http"
+                android:textStyle="bold"/>
             <EditText
                 android:id="@+id/server"
                 android:layout_width="match_parent"
@@ -32,7 +36,7 @@
                 android:inputType="textCapWords|textPersonName"
                 android:importantForAutofill="no"
                 tools:targetApi="o"/>
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
         <Button
             android:id="@+id/button_confirm"
             android:layout_width="match_parent"
