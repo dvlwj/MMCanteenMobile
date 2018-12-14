@@ -24,6 +24,7 @@
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:textSize="30sp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp"/>
         <ImageView
             android:layout_width="match_parent"
@@ -46,11 +47,14 @@
                 android:hint="@string/username_hint"
                 android:inputType="textCapWords|textPersonName"
                 android:importantForAutofill="no"
-                tools:targetApi="o"/>
+                tools:targetApi="o"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:passwordToggleDrawable="@drawable/ic_eye"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorPrimary"
             android:layout_marginBottom="@dimen/_10sdp">
@@ -64,7 +68,9 @@
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:importantForAutofill="no"
-                tools:targetApi="o"/>
+                tools:targetApi="o"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"/>
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/button_login"
@@ -75,7 +81,9 @@
             android:background="@color/colorPrimary"
             android:textColor="@color/white"
             android:drawableStart="@drawable/ic_sign_in"
-            android:layout_marginBottom="@dimen/_10sdp"/>
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
         <Button
             android:id="@+id/button_config"
             android:layout_width="match_parent"
@@ -85,7 +93,9 @@
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/white"
             android:drawableStart="@drawable/ic_cog"
-            android:layout_marginBottom="@dimen/_10sdp"/>
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
     </LinearLayout>
 
 </ScrollView>
