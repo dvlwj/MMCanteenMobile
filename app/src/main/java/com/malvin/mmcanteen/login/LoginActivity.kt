@@ -65,14 +65,17 @@ class LoginActivity : AppCompatActivity() {
         button_login?.isEnabled = false
         val session = SessionManagement(this)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Login}"
-        val dataServer = listOf("name" to username, "password" to password)
+        val dataServer = listOf("username" to username, "password" to password)
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
         val fbM = FeedbackManagement(this)
         progressbar.progress = 0
-        Fuel.post(address, dataServer).header("Content-Type" to "application/json").timeout(10000).responseJson { _, response, result ->
+        Fuel.post(address, dataServer).timeout(10000).responseJson { request, response, result ->
+//        address.httpPost().header("Content-Type" to "application/json").body(dataServer.toString()).timeout(10000).responseJson { request, response, result ->
+        println("request : $request \n respon : $response")
+            val respond = response.toString()
             result.success {
                 fbM.showToastShort(String(response.data))
                 progressbar?.visibility = View.GONE
