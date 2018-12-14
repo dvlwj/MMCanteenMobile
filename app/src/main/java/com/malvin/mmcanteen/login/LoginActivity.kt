@@ -1,13 +1,21 @@
 package com.malvin.mmcanteen.login
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.Window
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.android.extension.responseJson
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
 import com.malvin.mmcanteen.R
 import com.malvin.mmcanteen.utility.FeedbackManagement
+import com.malvin.mmcanteen.utility.ServerAddress
+import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity: AppCompatActivity() {
@@ -19,26 +27,68 @@ class LoginActivity: AppCompatActivity() {
         button_login?.setOnClickListener{validateCredentials()}
     }
 
-    fun validateCredentials(){
-        val usernameText = username?.text
-        val passwordText = password?.text
+    private fun validateCredentials(){
+        val usernameText = username?.text.toString()
+        val passwordText = password?.text.toString()
         val fbM = FeedbackManagement(this)
         val colorWarning = ContextCompat.getColor(this, R.color.colorWarning)
-        progressbar?.visibility = View.VISIBLE
+        val colorAccent = ContextCompat.getColor(this, R.color.colorAccent)
         when {
             usernameText.isNullOrEmpty() -> {
                 DrawableCompat.setTint(username.background,colorWarning)
-                username.backgroundTintList
-                fbM.showToastShort(R.string.username_error.toString())
+                fbM.showToastShort(resources.getString(R.string.username_empty))
+                username?.requestFocus()
             }
             passwordText.isNullOrEmpty() -> {
                 DrawableCompat.setTint(password.background,colorWarning)
-                fbM.showToastShort(R.string.password_error.toString())
+                fbM.showToastShort(resources.getString(R.string.password_empty))
+                password?.requestFocus()
             }
             !usernameText.isNullOrEmpty() && !passwordText.isNullOrEmpty() -> {
-                fbM.showToastShort("username : $usernameText , password : $passwordText")
+                DrawableCompat.setTint(username.background,colorAccent)
+                DrawableCompat.setTint(password.background,colorAccent)
+//                fbM.showToastShort("username : $usernameText , password : $passwordText")
+                connectServer(usernameText,passwordText)
             }
         }
-        progressbar?.visibility = View.GONE
+    }
+    fun connectServer(username: String,password: String){
+        progressbar?.visibility = View.VISIBLE
+        button_login?.isEnabled = false
+        val session = SessionManagement(this)
+        val address = ServerAddress.http+session.checkServerAddress(session.keyServerAddress)+ServerAddress.Login
+        val dataServer = listOf("username" to username, "password" to password)
+        val title = resources.getString(R.string.connection_failed)
+        val message = resources.getString(R.string.connection_try_again)
+        val yes = resources.getString(R.string.yes)
+        val no = resources.getString(R.string.no)
+        Fuel.post(address,dataServer).timeout(10000).responseJson{
+            _, response, result ->
+            result.success{
+                Log.d("httprequest",String(response.data))
+                progressbar?.visibility = View.GONE
+                button_login?.isEnabled = true
+            }
+            result.failure{
+                val fbM = FeedbackManagement(this)
+                fbM.showToastShort("failed")
+//                FeedbackManagement(this).showAlertDialog(title,body,false,"none",yes,no,connectServer(username,password),)
+                val dialog = AlertDialog.Builder(this)
+                dialog.setCancelable(false)
+                dialog.setTitle(title)
+                dialog.setMessage(message)
+                dialog.setPositiveButton(yes){
+                    DialogInterface, _ ->
+                    connectServer(username,password)
+                    DialogInterface.dismiss()
+                }
+                dialog.setNegativeButton(no){
+                    DialogInterface, _ ->
+                    button_login?.isEnabled = true
+                    DialogInterface.dismiss()
+                }
+                dialog.create().show()
+            }
+        }
     }
 }

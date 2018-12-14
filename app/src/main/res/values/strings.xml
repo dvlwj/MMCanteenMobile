@@ -4,9 +4,15 @@
     <string name="username">Username</string>
     <string name="username_hint">Username anda</string>
     <string name="username_error">Username salah</string>
+    <string name="username_empty">Username belum diisi</string>
     <string name="password">Password</string>
     <string name="password_hint">Password anda</string>
+    <string name="password_empty">Password belum diisi</string>
     <string name="password_error">Password salah</string>
     <string name="login">Login</string>
     <string name="server_config">Konfigurasi Server</string>
+    <string name="connection_failed">Koneksi gagal</string>
+    <string name="connection_try_again">Mau coba ulang?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
 </resources>

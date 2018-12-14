@@ -37,7 +37,7 @@ class FeedbackManagement(val context: Context) {
         }
         when{
             negativeButtonText != "none" -> {
-                dialog.setPositiveButton(negativeButtonText){
+                dialog.setNegativeButton(negativeButtonText){
                     DialogInterface, _ ->
                     functionNegative.invoke()
                     DialogInterface.dismiss()

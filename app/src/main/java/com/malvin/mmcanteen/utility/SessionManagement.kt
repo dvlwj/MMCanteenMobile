@@ -41,6 +41,10 @@ class SessionManagement(context: Context?) {
     fun checkData(key: String?):String?{
         return sharedPrefs?.getString(key,null)
     }
+    fun checkServerAddress(key: String?):String?{
+//        return sharedPrefs?.getString(key,"192.168.1.113")
+        return sharedPrefs?.getString(key,"192.168.1.113")
+    }
     fun clearData(){
         sharedPrefsEditor?.clear()
         sharedPrefsEditor?.apply()

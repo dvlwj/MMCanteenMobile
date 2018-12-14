@@ -54,7 +54,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleDrawable="@drawable/ic_eye"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorPrimary"
             android:layout_marginBottom="@dimen/_10sdp">
