@@ -30,7 +30,13 @@ class ServerActivity : AppCompatActivity() {
         val title = resources.getString(R.string.failed_save)
         val message = resources.getString(R.string.try_again)
         val yes = resources.getString(R.string.yes)
+        val serverAddress = session.checkServerAddress(session.keyServerAddress)
         when {
+            serverText == serverAddress -> {
+                DrawableCompat.setTint(server.background, colorWarning)
+                fbM.showToastShort(resources.getString(R.string.server_same))
+                server?.requestFocus()
+            }
             serverText.isEmpty() -> {
                 DrawableCompat.setTint(server.background, colorWarning)
                 fbM.showToastShort(resources.getString(R.string.server_empty))

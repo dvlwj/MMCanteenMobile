@@ -12,6 +12,7 @@
     <string name="server_hint">Alamat server anda</string>
     <string name="server_empty">Alamat server belum diisi</string>
     <string name="server_error">Alamat server salah</string>
+    <string name="server_same">Alamat server tidak berubah</string>
     <string name="login">Login</string>
     <string name="server_config">Konfigurasi Server</string>
     <string name="connection_failed">Koneksi gagal</string>
