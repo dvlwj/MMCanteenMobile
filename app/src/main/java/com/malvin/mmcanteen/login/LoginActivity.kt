@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
         val no = resources.getString(R.string.no)
         val fbM = FeedbackManagement(this)
         progressbar.progress = 0
-        Fuel.post(address, dataServer).timeout(10000).responseJson { _, response, result ->
+        Fuel.post(address, dataServer).header("Content-Type" to "application/json").timeout(10000).responseJson { _, response, result ->
             result.success {
                 fbM.showToastShort(String(response.data))
                 progressbar?.visibility = View.GONE
