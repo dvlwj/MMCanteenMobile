@@ -1,11 +1,11 @@
 package com.malvin.mmcanteen.login
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.view.Window
 import com.github.kittinunf.fuel.Fuel
@@ -13,78 +13,85 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.malvin.mmcanteen.R
+import com.malvin.mmcanteen.serversetting.ServerActivity
 import com.malvin.mmcanteen.utility.FeedbackManagement
 import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity: AppCompatActivity() {
+
+
+class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
-        button_login?.setOnClickListener{validateCredentials()}
+        button_login?.setOnClickListener {validateCredentials() }
+        button_config?.setOnClickListener {
+            startActivity(Intent(applicationContext, ServerActivity::class.java))
+        }
     }
 
-    private fun validateCredentials(){
+    private fun validateCredentials() {
         val usernameText = username?.text.toString()
         val passwordText = password?.text.toString()
         val fbM = FeedbackManagement(this)
         val colorWarning = ContextCompat.getColor(this, R.color.colorWarning)
         val colorAccent = ContextCompat.getColor(this, R.color.colorAccent)
         when {
-            usernameText.isNullOrEmpty() -> {
-                DrawableCompat.setTint(username.background,colorWarning)
+            usernameText.isEmpty() -> {
+                DrawableCompat.setTint(username.background, colorWarning)
                 fbM.showToastShort(resources.getString(R.string.username_empty))
                 username?.requestFocus()
             }
-            passwordText.isNullOrEmpty() -> {
-                DrawableCompat.setTint(password.background,colorWarning)
+            passwordText.isEmpty() -> {
+                DrawableCompat.setTint(password.background, colorWarning)
                 fbM.showToastShort(resources.getString(R.string.password_empty))
                 password?.requestFocus()
             }
-            !usernameText.isNullOrEmpty() && !passwordText.isNullOrEmpty() -> {
-                DrawableCompat.setTint(username.background,colorAccent)
-                DrawableCompat.setTint(password.background,colorAccent)
+            !usernameText.isEmpty() && !passwordText.isEmpty() -> {
+                DrawableCompat.setTint(username.background, colorAccent)
+                DrawableCompat.setTint(password.background, colorAccent)
 //                fbM.showToastShort("username : $usernameText , password : $passwordText")
-                connectServer(usernameText,passwordText)
+                connectServer(usernameText, passwordText)
             }
         }
     }
-    fun connectServer(username: String,password: String){
+
+    private fun connectServer(username: String, password: String) {
         progressbar?.visibility = View.VISIBLE
         button_login?.isEnabled = false
         val session = SessionManagement(this)
-        val address = ServerAddress.http+session.checkServerAddress(session.keyServerAddress)+ServerAddress.Login
+        val address = ServerAddress.http + session.checkServerAddress(session.keyServerAddress) + ServerAddress.Login
         val dataServer = listOf("username" to username, "password" to password)
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
-        Fuel.post(address,dataServer).timeout(10000).responseJson{
-            _, response, result ->
-            result.success{
-                Log.d("httprequest",String(response.data))
+        val fbM = FeedbackManagement(this)
+        progressbar.progress = 0
+        Fuel.post(address, dataServer).timeout(10000).responseJson { _, response, result ->
+            result.success {
+                fbM.showToastShort(String(response.data))
                 progressbar?.visibility = View.GONE
                 button_login?.isEnabled = true
             }
-            result.failure{
-                val fbM = FeedbackManagement(this)
+            result.failure {
+                progressbar?.visibility = View.GONE
                 fbM.showToastShort("failed")
 //                FeedbackManagement(this).showAlertDialog(title,body,false,"none",yes,no,connectServer(username,password),)
                 val dialog = AlertDialog.Builder(this)
                 dialog.setCancelable(false)
                 dialog.setTitle(title)
                 dialog.setMessage(message)
-                dialog.setPositiveButton(yes){
-                    DialogInterface, _ ->
-                    connectServer(username,password)
+                dialog.setNegativeButton(no) { DialogInterface, _ ->
+                    button_login?.isEnabled = true
                     DialogInterface.dismiss()
                 }
-                dialog.setNegativeButton(no){
-                    DialogInterface, _ ->
-                    button_login?.isEnabled = true
+                dialog.setPositiveButton(yes) { DialogInterface, _ ->
+                    connectServer(username, password)
                     DialogInterface.dismiss()
                 }
                 dialog.create().show()

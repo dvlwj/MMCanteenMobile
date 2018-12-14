@@ -9,10 +9,18 @@
     <string name="password_hint">Password anda</string>
     <string name="password_empty">Password belum diisi</string>
     <string name="password_error">Password salah</string>
+    <string name="server_hint">Alamat server anda</string>
+    <string name="server_empty">Alamat server belum diisi</string>
+    <string name="server_error">Alamat server salah</string>
     <string name="login">Login</string>
     <string name="server_config">Konfigurasi Server</string>
     <string name="connection_failed">Koneksi gagal</string>
     <string name="connection_try_again">Mau coba ulang?</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
+    <string name="save">Simpan</string>
+    <string name="try_again">Silahkan coba lagi</string>
+    <string name="success_save">Sukses menyimpan</string>
+    <string name="failed_save">Gagal menyimpan</string>
+    <string name="http">http://</string>
 </resources>
