@@ -28,4 +28,12 @@
     <string name="login_failed">Username atau password salah</string>
     <string name="login_error">Proses login gagal. Silahkan coba lagi</string>
     <string name="error">Terjadi Masalah</string>
+    <string name="setting">Setting</string>
+    <string name="welcome">Selamat datang %1$s</string>
+    <string name="menu_main">Menu Utama</string>
+    <string name="menu_order_list">Daftar Pesanan</string>
+    <string name="menu_check_orders">Absen</string>
+    <string name="menu_checked_list">Daftar Absen</string>
+    <string name="menu_coming_soon">Coming Soon</string>
+    <string name="logout">Logout</string>
 </resources>

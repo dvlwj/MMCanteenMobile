@@ -15,6 +15,7 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.malvin.mmcanteen.R
+import com.malvin.mmcanteen.dashboard.DashboardActivity
 import com.malvin.mmcanteen.serversetting.ServerActivity
 import com.malvin.mmcanteen.utility.FeedbackManagement
 import com.malvin.mmcanteen.utility.ServerAddress
@@ -55,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
             !usernameText.isEmpty() && !passwordText.isEmpty() -> {
                 DrawableCompat.setTint(username.background, colorAccent)
                 DrawableCompat.setTint(password.background, colorAccent)
-//                fbM.showToastShort("username : $usernameText , password : $passwordText")
                 connectServer(usernameText, passwordText)
             }
         }
@@ -75,21 +75,20 @@ class LoginActivity : AppCompatActivity() {
         progressbar.progress = 0
         Fuel.post(address, dataServer).timeout(10000).responseJson { _, response, result ->
 //        address.httpPost().header("Content-Type" to "application/json").body(dataServer.toString()).timeout(10000).responseJson { request, response, result ->
-//        println("request : $request \n respon : $response")
             result.success {
-
-//                check ulang blok kode ini
+//                check ulang blok kode ini untuk bagian parsing json untuk username, role, userid
                 val json = Parser().parse(StringBuilder(String(response.data))) as JsonObject
                 when (json.string("msg")){
                     "User signin" -> {
                         session.run {
-                            updateUsername(session.keyUsername)
-                            updateRole(session.keyRole)
-                            updateUserID(session.keyUserID)
-                            updateToken(session.keyToken)
+                            updateUsername(json.string("user.username"))
+                            updateRole(json.string("user.role"))
+                            updateUserID(json.string("user.id"))
+                            updateToken(json.string("token"))
                         }
                         fbM.showToastLong(resources.getString(R.string.login_success))
-//                        open main activity here
+                        startActivity(Intent(applicationContext, DashboardActivity::class.java))
+                        finish()
                     }
                     "Username or Password are incorrect" -> {
                         fbM.showToastLong(resources.getString(R.string.login_failed))
@@ -111,7 +110,6 @@ class LoginActivity : AppCompatActivity() {
             }
             result.failure {
                 progressbar?.visibility = View.GONE
-                fbM.showToastShort("failed")
 //                FeedbackManagement(this).showAlertDialog(title,body,false,"none",yes,no,connectServer(username,password),)
                 val dialog = AlertDialog.Builder(this)
                 dialog.setCancelable(false)
