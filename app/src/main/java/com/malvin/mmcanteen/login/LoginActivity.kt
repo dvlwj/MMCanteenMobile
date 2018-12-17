@@ -73,26 +73,30 @@ class LoginActivity : AppCompatActivity() {
         val fbM = FeedbackManagement(this)
         progressbar.progress = 0
         Fuel.post(address, dataServer).timeout(10000).responseJson { _, response, result ->
-//        address.httpPost().header("Content-Type" to "application/json").body(dataServer.toString()).timeout(10000).responseJson { request, response, result ->
             result.success {
-//                check ulang blok kode ini untuk bagian parsing json untuk username, role, userid
-//
-//                val respond = Parser().parse(StringBuilder(String(response.data))) as JsonObject
-                val json = Klaxon().parse<Data>(String(response.data))
-//                when (json.string("msg")){
-                when (json?.msg){
-                    "User signin" -> {
-                        session.run {
-                            updateUsername(json.user.username)
-                            updateRole(json.user.role)
-                            updateUserID(json.user.id)
-                            updateToken(json.token)
+                val respond = String(response.data)
+                val login = Klaxon().parse<LoginStatus>(respond)
+                when (login?.status){
+                    1 -> {
+                        val json = Klaxon().parse<Data>(respond)
+                        when {
+                            json != null -> {
+                                val uname = json.user.username
+                                val role = json.user.role
+                                val userID = json.user.id
+                                val token = json.token
+                                session.run {
+                                    updateUsername(uname)
+                                    updateRole(role)
+                                    updateUserID(userID)
+                                    updateToken(token)
+                                }
+                            }
                         }
-                        fbM.showToastLong(resources.getString(R.string.login_success))
                         startActivity(Intent(applicationContext, DashboardActivity::class.java))
                         finish()
                     }
-                    "Username or Password are incorrect" -> {
+                    0 -> {
                         fbM.showToastLong(resources.getString(R.string.login_failed))
                     }
                     else-> {
@@ -106,13 +110,11 @@ class LoginActivity : AppCompatActivity() {
                         dialog.create().show()
                     }
                 }
-//                fbM.showToastShort(String(response.data))
                 progressbar?.visibility = View.GONE
                 button_login?.isEnabled = true
             }
             result.failure {
                 progressbar?.visibility = View.GONE
-//                FeedbackManagement(this).showAlertDialog(title,body,false,"none",yes,no,connectServer(username,password),)
                 val dialog = AlertDialog.Builder(this)
                 dialog.setCancelable(false)
                 dialog.setTitle(title)

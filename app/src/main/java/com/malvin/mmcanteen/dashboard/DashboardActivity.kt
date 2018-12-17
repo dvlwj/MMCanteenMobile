@@ -1,8 +1,6 @@
 package com.malvin.mmcanteen.dashboard
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -19,8 +17,8 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         setContentView(R.layout.activity_dashboard)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(128,0,0,0)))
-        supportActionBar?.title = resources.getString(R.string.app_name)
+//        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(0,0,0,0)))
+//        supportActionBar?.title = resources.getString(R.string.app_name)
         val session = SessionManagement(this)
         val username = session.checkData(session.keyUsername)
         welcome_text?.text = resources.getString(R.string.welcome,username)

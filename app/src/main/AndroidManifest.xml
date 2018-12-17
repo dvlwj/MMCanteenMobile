@@ -13,12 +13,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".splashscreen.SplashcreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".login.LoginActivity"/>
         <activity android:name=".serversetting.ServerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
