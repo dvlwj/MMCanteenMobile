@@ -29,7 +29,7 @@
     <string name="login_error">Proses login gagal. Silahkan coba lagi</string>
     <string name="error">Terjadi Masalah</string>
     <string name="setting">Setting</string>
-    <string name="welcome">Selamat datang %1$s</string>
+    <string name="welcome">Selamat datang %1$s.</string>
     <string name="menu_main">Menu Utama</string>
     <string name="menu_order_list">Daftar Pesanan</string>
     <string name="menu_check_orders">Absen</string>

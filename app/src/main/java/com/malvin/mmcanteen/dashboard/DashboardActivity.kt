@@ -20,7 +20,7 @@ class DashboardActivity : AppCompatActivity() {
 //        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(0,0,0,0)))
 //        supportActionBar?.title = resources.getString(R.string.app_name)
         val session = SessionManagement(this)
-        val username = session.checkData(session.keyUsername)
+        val username = session.checkData(session.keyUsername)?.capitalize()
         welcome_text?.text = resources.getString(R.string.welcome,username)
         button_logout?.setOnClickListener {
             session.clearData()
