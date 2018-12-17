@@ -30,13 +30,16 @@ class SessionManagement(context: Context?) {
         sharedPrefsEditor?.putString(keyRole,value)
         sharedPrefsEditor?.apply()
     }
-    fun updateUserID(value: String?){
-        sharedPrefsEditor?.putString(keyUserID,value)
+    fun updateUserID(value: Int){
+        sharedPrefsEditor?.putInt(keyUserID,value)
         sharedPrefsEditor?.apply()
     }
     fun updateServerAddress(value: String?){
         sharedPrefsEditor?.putString(keyServerAddress,value)
         sharedPrefsEditor?.apply()
+    }
+    fun checkID(key: String?):Int?{
+        return sharedPrefs?.getInt(key,0)
     }
     fun checkData(key: String?):String?{
         return sharedPrefs?.getString(key,null)

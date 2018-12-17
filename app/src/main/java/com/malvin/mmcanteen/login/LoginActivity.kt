@@ -8,8 +8,7 @@ import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
+import com.beust.klaxon.Klaxon
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
@@ -77,14 +76,17 @@ class LoginActivity : AppCompatActivity() {
 //        address.httpPost().header("Content-Type" to "application/json").body(dataServer.toString()).timeout(10000).responseJson { request, response, result ->
             result.success {
 //                check ulang blok kode ini untuk bagian parsing json untuk username, role, userid
-                val json = Parser().parse(StringBuilder(String(response.data))) as JsonObject
-                when (json.string("msg")){
+//
+//                val respond = Parser().parse(StringBuilder(String(response.data))) as JsonObject
+                val json = Klaxon().parse<Data>(String(response.data))
+//                when (json.string("msg")){
+                when (json?.msg){
                     "User signin" -> {
                         session.run {
-                            updateUsername(json.string("user.username"))
-                            updateRole(json.string("user.role"))
-                            updateUserID(json.string("user.id"))
-                            updateToken(json.string("token"))
+                            updateUsername(json.user.username)
+                            updateRole(json.user.role)
+                            updateUserID(json.user.id)
+                            updateToken(json.token)
                         }
                         fbM.showToastLong(resources.getString(R.string.login_success))
                         startActivity(Intent(applicationContext, DashboardActivity::class.java))
