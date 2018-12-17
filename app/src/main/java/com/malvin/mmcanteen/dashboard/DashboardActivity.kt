@@ -24,7 +24,7 @@ class DashboardActivity : AppCompatActivity() {
         welcome_text?.text = resources.getString(R.string.welcome,username)
         button_logout?.setOnClickListener {
             session.clearData()
-            startActivity(Intent(applicationContext, LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }

@@ -22,12 +22,12 @@ class SplashcreenActivity: AppCompatActivity() {
         when{
             token.isNullOrEmpty()-> {
                 Handler().postDelayed({
-                    startActivity(Intent(applicationContext, LoginActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 },2000)
             }
             !token.isNullOrEmpty() ->{
-                startActivity(Intent(applicationContext, DashboardActivity::class.java))
+                startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
             }
         }
