@@ -18,7 +18,7 @@
             android:max="3"
             android:indeterminate="false"
             android:visibility="gone"
-            android:progressDrawable="@drawable/greenprogress"/>
+            android:theme="@android:style/Widget.Material.ProgressBar"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

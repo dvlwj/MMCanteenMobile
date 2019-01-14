@@ -17,9 +17,12 @@ import com.malvin.mmcanteen.R
 import com.malvin.mmcanteen.dashboard.DashboardActivity
 import com.malvin.mmcanteen.serversetting.ServerActivity
 import com.malvin.mmcanteen.utility.FeedbackManagement
+import com.malvin.mmcanteen.utility.ProgressBarAnimation
 import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_login.*
+
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -62,6 +65,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun connectServer(username: String, password: String) {
         progressbar?.visibility = View.VISIBLE
+        val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
+        anim.duration = 1000
+        progressbar.startAnimation(anim)
         button_login?.isEnabled = false
         val session = SessionManagement(this)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Login}"
