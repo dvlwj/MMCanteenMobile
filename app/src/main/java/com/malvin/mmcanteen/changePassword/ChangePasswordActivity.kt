@@ -1,4 +1,4 @@
-package com.malvin.mmcanteen.change_password
+package com.malvin.mmcanteen.changePassword
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -28,8 +28,12 @@ class ChangePasswordActivity:AppCompatActivity() {
         val password = field_new_password?.text.toString()
         val fbM = FeedbackManagement(this)
         when {
-            password.isNullOrEmpty() -> {
+            password.isEmpty() -> {
                 fbM.showToastShort(resources.getString(R.string.change_password_null))
+                field_new_password?.requestFocus()
+            }
+            password.count() < 6 ->{
+                fbM.showToastShort(resources.getString(R.string.change_password_under6))
                 field_new_password?.requestFocus()
             }
             else -> {
@@ -54,34 +58,50 @@ class ChangePasswordActivity:AppCompatActivity() {
         val fbM = FeedbackManagement(this)
         Fuel.patch(address, dataServer).header("token" to token).timeout(10000).responseJson { _, response, result ->
             result.success {
-                val respond = String(response.data)
-                val changePassword = Klaxon().parse<ChangePasswordStatus>(respond)
-                when(changePassword?.status){
-                    1->{
-                        fbM.showToastShort(resources.getString(R.string.change_password_success))
+                try {
+                    val respond = String(response.data)
+                    val changePassword = Klaxon().parse<ChangePasswordStatus>(respond)
+                    when (changePassword?.status) {
+                        1 -> {
+                            fbM.showToastShort(resources.getString(R.string.change_password_success))
+                            finish()
+                        }
+                        2 -> {
+                            fbM.showToastShort(resources.getString(R.string.change_password_under6))
+                            field_new_password?.requestFocus()
+                        }
+                        else -> {
+                            val dialog = AlertDialog.Builder(this)
+                            dialog.setCancelable(false)
+                            dialog.setTitle(resources.getString(R.string.error))
+                            dialog.setMessage(resources.getString(R.string.change_password_error))
+                            dialog.setNeutralButton(yes) { DialogInterface, _ ->
+                                DialogInterface.dismiss()
+                            }
+                            dialog.create().show()
+                        }
+                    }
+                }
+                catch (e: Exception){
+                    val dialog = AlertDialog.Builder(this)
+                    dialog.setCancelable(false)
+                    dialog.setTitle(resources.getString(R.string.process_failed))
+                    dialog.setMessage(message)
+                    dialog.setNegativeButton(no) { DialogInterface, _ ->
+                        DialogInterface.dismiss()
                         finish()
                     }
-                    2->{
-                        //do later
+                    dialog.setPositiveButton(yes) { DialogInterface, _ ->
+                        updatePassword(password)
+                        DialogInterface.dismiss()
                     }
-                    else -> {
-                        val dialog = AlertDialog.Builder(this)
-                        dialog.setCancelable(false)
-                        dialog.setTitle(resources.getString(R.string.error))
-                        dialog.setMessage(resources.getString(R.string.login_error))
-                        dialog.setNeutralButton(yes) { DialogInterface, _ ->
-                            DialogInterface.dismiss()
-                        }
-                        dialog.create().show()
-                    }
+                    dialog.create().show()
                 }
                 progressbar?.visibility = View.GONE
                 button_confirm?.isEnabled = true
             }
             result.failure {
                 progressbar?.visibility = View.GONE
-                val respond = String(response.data)
-                println(respond)
                 val dialog = AlertDialog.Builder(this)
                 dialog.setCancelable(false)
                 dialog.setTitle(title)

@@ -3,9 +3,11 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.malvin.mmcanteen">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,10 +28,24 @@
                 android:value=".login.LoginActivity"/>
         </activity>
         <activity android:name=".dashboard.DashboardActivity"/>
-        <activity android:name=".change_password.ChangePasswordActivity">
+        <activity android:name=".changePassword.ChangePasswordActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".dashboard.DashboardActivity"/>
         </activity>
+        <activity android:name=".scan.MorningScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name=".scan.NoonScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
     </application>
 </manifest>

@@ -7,4 +7,5 @@ object ServerAddress {
     private const val MainUrl = "/api/v1/"
     const val Login = MainUrl+"user/signin"
     const val Petugas = MainUrl+"petugas"
+    const val Absen = MainUrl+"absen"
 }
