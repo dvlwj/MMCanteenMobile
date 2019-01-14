@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.malvin.mmcanteen">
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="false"
@@ -23,8 +23,13 @@
         <activity android:name=".serversetting.ServerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".login.LoginActivity" />
+                android:value=".login.LoginActivity"/>
         </activity>
         <activity android:name=".dashboard.DashboardActivity"/>
+        <activity android:name=".change_password.ChangePasswordActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
     </application>
 </manifest>

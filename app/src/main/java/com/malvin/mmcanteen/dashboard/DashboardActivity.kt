@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.malvin.mmcanteen.R
+import com.malvin.mmcanteen.change_password.ChangePasswordActivity
 import com.malvin.mmcanteen.login.LoginActivity
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -25,8 +26,10 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+        menu_change_password?.setOnClickListener {
+            startActivity(Intent(this, ChangePasswordActivity::class.java))
+        }
     }
-
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        menuInflater.inflate(R.menu.main_menu, menu)
 //        return true
