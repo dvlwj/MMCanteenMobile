@@ -61,6 +61,9 @@ class ChangePasswordActivity:AppCompatActivity() {
                         fbM.showToastShort(resources.getString(R.string.change_password_success))
                         finish()
                     }
+                    2->{
+                        //do later
+                    }
                     else -> {
                         val dialog = AlertDialog.Builder(this)
                         dialog.setCancelable(false)
