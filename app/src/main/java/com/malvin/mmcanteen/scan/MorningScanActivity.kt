@@ -103,6 +103,7 @@ class MorningScanActivity:AppCompatActivity() {
                 dialog.setMessage(message)
                 dialog.setNegativeButton(no) { DialogInterface, _ ->
                     DialogInterface.dismiss()
+                    finish()
                 }
                 dialog.setPositiveButton(yes) { DialogInterface, _ ->
                     updateAbsen(nis)
