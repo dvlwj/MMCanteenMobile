@@ -17,7 +17,7 @@ import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_scan.*
 
-class MorningScanActivity:AppCompatActivity() {
+class ActiveScanActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
@@ -36,18 +36,18 @@ class MorningScanActivity:AppCompatActivity() {
                 scan_again?.visibility = View.VISIBLE
                 FeedbackManagement(this).showToastLong("Hasil Kosong")
             } else {
-               updateAbsen(result.contents)
+               updateStatus(result.contents)
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    private fun updateAbsen(nis: String?){
+    private fun updateStatus(nis: String?){
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Absen}"
-        val dataServer = listOf("nis" to nis,"status" to "pagi")
+        val dataServer = listOf("nis" to nis,"status" to "aktif")
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
@@ -95,7 +95,7 @@ class MorningScanActivity:AppCompatActivity() {
                         finish()
                     }
                     dialog.setPositiveButton(yes) { DialogInterface, _ ->
-                        updateAbsen(nis)
+                        updateStatus(nis)
                         DialogInterface.dismiss()
                     }
                     dialog.create().show()
@@ -111,7 +111,7 @@ class MorningScanActivity:AppCompatActivity() {
                     finish()
                 }
                 dialog.setPositiveButton(yes) { DialogInterface, _ ->
-                    updateAbsen(nis)
+                    updateStatus(nis)
                     DialogInterface.dismiss()
                 }
                 dialog.create().show()

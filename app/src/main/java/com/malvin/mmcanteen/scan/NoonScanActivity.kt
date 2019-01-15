@@ -43,7 +43,7 @@ class NoonScanActivity:AppCompatActivity() {
         }
     }
 
-    fun updateAbsen(nis: String?){
+    private fun updateAbsen(nis: String?){
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Absen}"
@@ -61,11 +61,16 @@ class NoonScanActivity:AppCompatActivity() {
                     val respondData = Klaxon().parse<ScanStatus>(respond)
                     when(respondData?.status){
                         1 -> {
-                            val nis_text = resources.getString(R.string.nis_number, nis)
+                            val nisText = resources.getString(R.string.nis_number, nis)
                             nis_number?.visibility = View.VISIBLE
                             scan_again?.visibility = View.VISIBLE
-                            nis_number?.text = nis_text
+                            nis_number?.text = nisText
                             fbM.showToastLong("$nis sukses diabsen")
+                        }
+                        0 -> {
+                            nis_number?.visibility = View.VISIBLE
+                            scan_again?.visibility = View.VISIBLE
+                            nis_number?.text = resources.getString(R.string.scan_already, nis)
                         }
                         else -> {
                             val dialog = AlertDialog.Builder(this)
