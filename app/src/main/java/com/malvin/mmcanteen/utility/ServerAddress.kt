@@ -9,4 +9,6 @@ object ServerAddress {
     const val Petugas = MainUrl+"petugas"
     const val Absen = MainUrl+"absen"
     const val StatusSiswa = MainUrl+"siswa/"
+    const val Kelas = MainUrl+"siswa/kelas"
+    const val TahunAjaran = MainUrl+"siswa/th-ajaran"
 }

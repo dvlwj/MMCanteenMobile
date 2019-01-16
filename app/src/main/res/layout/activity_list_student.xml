@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/kelas"
+                android:id="@+id/spinner_kelas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
             </android.support.v7.widget.AppCompatSpinner>
             <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/tahun_ajaran"
+                android:id="@+id/spinner_tahun_ajaran"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
