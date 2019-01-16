@@ -64,7 +64,8 @@
                 android:textSize="@dimen/_12ssp"
                 android:padding="@dimen/_10sdp"
                 style="?android:attr/buttonBarButtonStyle"/>
-        </LinearLayout><LinearLayout
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -93,6 +94,43 @@
                 android:layout_weight="1"
                 android:elevation="0dp"
                 android:text="@string/menu_noon_active"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/ic_sync_alt"
+                android:drawablePadding="@dimen/_10sdp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                android:padding="@dimen/_10sdp"
+                style="?android:attr/buttonBarButtonStyle"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            style="?android:attr/buttonBarStyle">
+            <Button
+                android:id="@+id/menu_morning_nonactive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:text="@string/menu_morning_non_active"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/ic_sync_alt"
+                android:drawablePadding="@dimen/_10sdp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                android:padding="@dimen/_10sdp"
+                style="?android:attr/buttonBarButtonStyle"/>
+            <Button
+                android:id="@+id/menu_noon_nonactive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:text="@string/menu_noon_non_active"
                 android:background="@color/transparent"
                 android:drawableTop="@drawable/ic_sync_alt"
                 android:drawablePadding="@dimen/_10sdp"

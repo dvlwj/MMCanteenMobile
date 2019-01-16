@@ -17,7 +17,7 @@ import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_scan.*
 
-class NoonActiveScanActivity:AppCompatActivity() {
+class NoonNonActiveScanActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
@@ -47,7 +47,7 @@ class NoonActiveScanActivity:AppCompatActivity() {
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}$nis"
-        val dataServer = listOf("nis" to nis,"siang" to "aktif")
+        val dataServer = listOf("nis" to nis,"siang" to "non aktif")
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)

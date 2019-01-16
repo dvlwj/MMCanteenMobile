@@ -53,6 +53,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".dashboard.DashboardActivity"/>
         </activity>
+        <activity android:name=".scan.MorningNonActiveScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name=".scan.NoonNonActiveScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
         <activity android:name=".student.StudentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

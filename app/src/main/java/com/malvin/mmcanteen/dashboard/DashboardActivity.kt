@@ -7,10 +7,7 @@ import android.view.Window
 import com.malvin.mmcanteen.R
 import com.malvin.mmcanteen.changepassword.ChangePasswordActivity
 import com.malvin.mmcanteen.login.LoginActivity
-import com.malvin.mmcanteen.scan.MorningActiveScanActivity
-import com.malvin.mmcanteen.scan.MorningScanActivity
-import com.malvin.mmcanteen.scan.NoonActiveScanActivity
-import com.malvin.mmcanteen.scan.NoonScanActivity
+import com.malvin.mmcanteen.scan.*
 import com.malvin.mmcanteen.student.StudentListActivity
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -45,6 +42,12 @@ class DashboardActivity : AppCompatActivity() {
         }
         menu_noon_active?.setOnClickListener {
             startActivity(Intent(this,NoonActiveScanActivity::class.java))
+        }
+        menu_morning_nonactive?.setOnClickListener {
+            startActivity(Intent(this,MorningNonActiveScanActivity::class.java))
+        }
+        menu_noon_nonactive?.setOnClickListener {
+            startActivity(Intent(this,NoonNonActiveScanActivity::class.java))
         }
         menu_student_list?.setOnClickListener {
             startActivity(Intent(this,StudentListActivity::class.java))

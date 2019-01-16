@@ -47,7 +47,7 @@ class MorningActiveScanActivity:AppCompatActivity() {
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}$nis"
-        val dataServer = listOf("nis" to nis,"status" to "aktif")
+        val dataServer = listOf("nis" to nis,"pagi" to "aktif")
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
