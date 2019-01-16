@@ -211,8 +211,10 @@ class StudentListActivity: AppCompatActivity() {
                                     val siswa = json.siswa.name
                                     // lanjutkan load data lain
                                     // lanjutkan disini usahakan buat jadi array untuk membuat recycle list
-                                                                    }
+
+                                }
                             }
+                            search_button?.isEnabled = true
                         }
                         else -> {
                             val dialog = AlertDialog.Builder(this)
