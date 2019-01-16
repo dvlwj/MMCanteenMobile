@@ -12,7 +12,6 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.malvin.mmcanteen.R
-import com.malvin.mmcanteen.utility.FeedbackManagement
 import com.malvin.mmcanteen.utility.ProgressBarAnimation
 import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
@@ -20,18 +19,12 @@ import kotlinx.android.synthetic.main.activity_list_student.*
 
 class StudentListActivity: AppCompatActivity() {
 
-    val session = SessionManagement(this)
-    val title: String? = resources.getString(R.string.connection_failed)
-    val message: String? = resources.getString(R.string.connection_try_again)
-    val yes: String? = resources.getString(R.string.yes)
-    val no: String? = resources.getString(R.string.no)
-    val fbM = FeedbackManagement(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         setContentView(R.layout.activity_list_student)
         search_button?.isEnabled = false
+        val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         loadKelas(token)
         search_button?.setOnClickListener {
@@ -46,6 +39,11 @@ class StudentListActivity: AppCompatActivity() {
         val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
         anim.duration = 1000
         progressbar.startAnimation(anim)
+        val session = SessionManagement(this)
+        val title = resources.getString(R.string.connection_failed)
+        val message = resources.getString(R.string.connection_try_again)
+        val yes = resources.getString(R.string.yes)
+        val no = resources.getString(R.string.no)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Kelas}"
         val spinnerKelas = spinner_kelas
         val arraySpinner = arrayOf("Loading...")
@@ -122,6 +120,11 @@ class StudentListActivity: AppCompatActivity() {
         val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
         anim.duration = 1000
         progressbar.startAnimation(anim)
+        val session = SessionManagement(this)
+        val title = resources.getString(R.string.connection_failed)
+        val message = resources.getString(R.string.connection_try_again)
+        val yes = resources.getString(R.string.yes)
+        val no = resources.getString(R.string.no)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.TahunAjaran}"
         val spinnerTahun = spinner_tahun_ajaran
         val arraySpinner = arrayOf("Loading...")
@@ -195,6 +198,11 @@ class StudentListActivity: AppCompatActivity() {
         val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
         anim.duration = 1000
         progressbar.startAnimation(anim)
+        val session = SessionManagement(this)
+        val title = resources.getString(R.string.connection_failed)
+        val message = resources.getString(R.string.connection_try_again)
+        val yes = resources.getString(R.string.yes)
+        val no = resources.getString(R.string.no)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}/$kelasID/$tahunAjaranID"
         Fuel.get(address).header("token" to token).timeout(10000).responseJson {
             _,response,result ->
