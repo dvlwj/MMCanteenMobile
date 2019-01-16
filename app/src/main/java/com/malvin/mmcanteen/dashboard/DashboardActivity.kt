@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.malvin.mmcanteen.R
-import com.malvin.mmcanteen.changePassword.ChangePasswordActivity
+import com.malvin.mmcanteen.changepassword.ChangePasswordActivity
 import com.malvin.mmcanteen.login.LoginActivity
+import com.malvin.mmcanteen.scan.MorningActiveScanActivity
 import com.malvin.mmcanteen.scan.MorningScanActivity
+import com.malvin.mmcanteen.scan.NoonActiveScanActivity
+import com.malvin.mmcanteen.scan.NoonScanActivity
+import com.malvin.mmcanteen.student.StudentListActivity
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
@@ -34,7 +38,16 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, MorningScanActivity::class.java))
         }
         menu_noon_check?.setOnClickListener {
-            startActivity(Intent(this,MorningScanActivity::class.java))
+            startActivity(Intent(this,NoonScanActivity::class.java))
+        }
+        menu_morning_active?.setOnClickListener {
+            startActivity(Intent(this,MorningActiveScanActivity::class.java))
+        }
+        menu_noon_active?.setOnClickListener {
+            startActivity(Intent(this,NoonActiveScanActivity::class.java))
+        }
+        menu_student_list?.setOnClickListener {
+            startActivity(Intent(this,StudentListActivity::class.java))
         }
     }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {

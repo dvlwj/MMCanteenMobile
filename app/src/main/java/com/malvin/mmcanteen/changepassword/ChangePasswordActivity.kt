@@ -1,4 +1,4 @@
-package com.malvin.mmcanteen.changePassword
+package com.malvin.mmcanteen.changepassword
 
 import android.app.AlertDialog
 import android.os.Bundle

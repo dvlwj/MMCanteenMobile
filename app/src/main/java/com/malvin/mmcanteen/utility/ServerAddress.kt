@@ -8,4 +8,5 @@ object ServerAddress {
     const val Login = MainUrl+"user/signin"
     const val Petugas = MainUrl+"petugas"
     const val Absen = MainUrl+"absen"
+    const val StatusSiswa = MainUrl+"siswa/"
 }

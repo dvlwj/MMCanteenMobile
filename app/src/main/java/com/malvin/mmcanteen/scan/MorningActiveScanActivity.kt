@@ -17,7 +17,7 @@ import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_scan.*
 
-class ActiveScanActivity:AppCompatActivity() {
+class MorningActiveScanActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
@@ -46,14 +46,14 @@ class ActiveScanActivity:AppCompatActivity() {
     private fun updateStatus(nis: String?){
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
-        val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.Absen}"
+        val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}$nis"
         val dataServer = listOf("nis" to nis,"status" to "aktif")
         val title = resources.getString(R.string.connection_failed)
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
         val fbM = FeedbackManagement(this)
-        Fuel.post(address, dataServer).header("token" to token).timeout(10000).responseJson {
+        Fuel.patch(address, dataServer).header("token" to token).timeout(10000).responseJson {
             _, response, result ->
             result.success {
                 try {
@@ -61,22 +61,28 @@ class ActiveScanActivity:AppCompatActivity() {
                     val respondData = Klaxon().parse<ScanStatus>(respond)
                     when(respondData?.status){
                         1 -> {
-                            val nisText = resources.getString(R.string.nis_number, nis)
-                            nis_number?.visibility = View.VISIBLE
-                            scan_again?.visibility = View.VISIBLE
-                            nis_number?.text = nisText
-                            fbM.showToastLong("$nis sukses discan")
+                            val json = Klaxon().parse<DataActive>(respond)
+                            when{
+                                json != null -> {
+                                    val pagi = json.siswa.pagi
+                                    val nisText = resources.getString(R.string.nis_number, nis)
+                                    nis_number?.visibility = View.VISIBLE
+                                    scan_again?.visibility = View.VISIBLE
+                                    nis_number?.text = nisText
+                                    fbM.showToastLong("$nis sukses discan : $pagi")
+                                }
+                            }
                         }
                         0 -> {
                             nis_number?.visibility = View.VISIBLE
                             scan_again?.visibility = View.VISIBLE
-                            nis_number?.text = resources.getString(R.string.scan_already, nis)
+                            nis_number?.text = resources.getString(R.string.scan_failed, nis)
                         }
                         else -> {
                             val dialog = AlertDialog.Builder(this)
                             dialog.setCancelable(false)
                             dialog.setTitle(resources.getString(R.string.error))
-                            dialog.setMessage(resources.getString(R.string.check_absen_error))
+                            dialog.setMessage(resources.getString(R.string.change_status_error))
                             dialog.setNeutralButton(yes) { DialogInterface, _ ->
                                 DialogInterface.dismiss()
                             }

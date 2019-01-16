@@ -28,7 +28,7 @@
                 android:value=".login.LoginActivity"/>
         </activity>
         <activity android:name=".dashboard.DashboardActivity"/>
-        <activity android:name=".changePassword.ChangePasswordActivity">
+        <activity android:name=".changepassword.ChangePasswordActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".dashboard.DashboardActivity"/>
@@ -39,6 +39,21 @@
                 android:value=".dashboard.DashboardActivity"/>
         </activity>
         <activity android:name=".scan.NoonScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name=".scan.MorningActiveScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name=".scan.NoonActiveScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name=".student.StudentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".dashboard.DashboardActivity"/>

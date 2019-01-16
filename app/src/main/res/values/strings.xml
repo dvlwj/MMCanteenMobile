@@ -34,10 +34,12 @@
     <string name="change_password_null">Password baru tidak boleh kosong</string>
     <string name="change_password_success">Password baru sukses diganti</string>
     <string name="change_password_error">Proses ganti password gagal. Silahkan coba lagi</string>
-    <string name="check_absen_error">Proses absen makkan gagal. Silahkan coba lagi</string>
+    <string name="check_absen_error">Proses absen tidak makan gagal. Silahkan coba lagi</string>
+    <string name="change_status_error">Proses merubah status siswa gagal. Silahkan coba lagi</string>
     <string name="scan_again">Scan Lagi</string>
     <string name="nis_number">NIS : %1$s</string>
     <string name="scan_already">NIS : %1$s sudah pernah di scan</string>
+    <string name="scan_failed">NIS : %1$s gagal di scan</string>
     <string name="result_null">QR Code tidak memiliki informasi apapun</string>
     <string name="morning">Pagi</string>
     <string name="noon">Siang</string>
@@ -47,7 +49,9 @@
     <string name="menu_main">Menu Utama</string>
     <string name="menu_morning_check">Scan Pagi</string>
     <string name="menu_noon_check">Scan Siang</string>
-    <string name="menu_checked_list">Daftar Absen</string>
+    <string name="menu_morning_active">Aktif /Non Aktif Pagi</string>
+    <string name="menu_noon_active">Aktif / Non Aktif Siang</string>
+    <string name="menu_student_list">Daftar Siswa</string>
     <string name="menu_change_password">Ganti Password</string>
     <string name="menu_coming_soon">Coming Soon</string>
     <string name="process_failed">Proses gagal</string>

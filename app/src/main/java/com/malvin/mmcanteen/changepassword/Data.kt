@@ -1,4 +1,4 @@
-package com.malvin.mmcanteen.changePassword
+package com.malvin.mmcanteen.changepassword
 
 class ChangePasswordStatus(val status: Int)
 
