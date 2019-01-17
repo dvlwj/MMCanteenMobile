@@ -17,6 +17,8 @@ import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_list_student.*
 
+
+
 class StudentListActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +30,8 @@ class StudentListActivity: AppCompatActivity() {
         val token = session.checkData(session.keyToken).toString()
         loadKelas(token)
         search_button?.setOnClickListener {
-            val kelasID = spinner_kelas?.id
-            val tahunAjaranID = spinner_tahun_ajaran?.id
+            val kelasID = (spinner_kelas?.selectedItem as Kelas).id
+            val tahunAjaranID = (spinner_tahun_ajaran?.selectedItem as TahunAjaran).id
             loadData(token,kelasID,tahunAjaranID)
         }
     }
@@ -61,9 +63,17 @@ class StudentListActivity: AppCompatActivity() {
                             val json = Klaxon().parse<DataKelas>(respond)
                             when{
                                 json != null -> {
-                                    val idKelas = json.kelas.id
-                                    val namaKelas = json.kelas.name
-                                    // lanjutkan disini usahakan buat jadi array untuk membuat spinner
+                                    val data = ArrayList(json.kelas)
+                                    data.toArray()
+//                                    val map = data?.map { it->
+//                                        Kelas(
+//                                            it.id,
+//                                            it.name
+//                                        )
+//                                    }
+                                    val spinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
+                                    spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                                    spinnerKelas?.adapter = spinner
                                     loadTahunAjaran(token)
                                 }
                             }
@@ -141,8 +151,14 @@ class StudentListActivity: AppCompatActivity() {
                             val json = Klaxon().parse<DataTahunAjaran>(respond)
                             when{
                                 json != null -> {
-                                    val idTahunAjaran = json.th_ajaran.id
-                                    val namaTahunAjaran = json.th_ajaran.tahun
+                                    val data = ArrayList(json.th_ajaran)
+                                    data.toArray()
+                                    val spinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
+                                    spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                                    spinnerTahun?.adapter = spinner
+                                    search_button?.isEnabled = true
+//                                    val idTahunAjaran = json.th_ajaran.id
+//                                    val namaTahunAjaran = json.th_ajaran.tahun
                                     // lanjutkan disini usahakan buat jadi array untuk membuat spinner
                                 }
                             }
@@ -194,6 +210,7 @@ class StudentListActivity: AppCompatActivity() {
     }
 
     private fun loadData(token: String, kelasID: Int?, tahunAjaranID: Int?){
+        search_button?.isEnabled = false
         progressbar?.visibility = View.VISIBLE
         val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
         anim.duration = 1000
@@ -203,7 +220,7 @@ class StudentListActivity: AppCompatActivity() {
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
-        val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}/$kelasID/$tahunAjaranID"
+        val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}$kelasID/$tahunAjaranID"
         Fuel.get(address).header("token" to token).timeout(10000).responseJson {
             _,response,result ->
             result.success {
@@ -215,11 +232,18 @@ class StudentListActivity: AppCompatActivity() {
                             val json = Klaxon().parse<DataAll>(respond)
                             when{
                                 json != null -> {
-                                    val id = json.siswa.id
-                                    val siswa = json.siswa.name
+//                                    val data = arrayOf(json.siswa)
+//                                    val spinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
+//                                    spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                                    spinnerKelas?.adapter = spinner
+//                                    val id = json.siswa.id
+//                                    val siswa = json.siswa.name
                                     // lanjutkan load data lain
                                     // lanjutkan disini usahakan buat jadi array untuk membuat recycle list
 
+                                }
+                                else -> {
+                                    // do something if it null here
                                 }
                             }
                             search_button?.isEnabled = true
