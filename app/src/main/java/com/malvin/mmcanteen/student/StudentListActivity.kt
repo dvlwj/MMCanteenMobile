@@ -235,19 +235,11 @@ class StudentListActivity: AppCompatActivity() {
                     when(respondData?.status) {
                         1 -> {
                             val json = Klaxon().parse<DataAll>(respond)
+                            val stringBuilder = StringBuilder(respond)
+                            val respondParser = Parser().parse(stringBuilder) as JsonObject
+                            val data = respondParser.array<JsonObject>("siswa")
                             when{
-                                json != null -> {
-//                                    val data = json.toArray()
-//                                    val data = ArrayList(json.siswa)
-//                                    data.toArray()
-                                    val stringBuilder = StringBuilder(respond)
-                                    val respondParser = Parser().parse(stringBuilder) as JsonObject
-                                    val data = respondParser.array<JsonObject>("siswa")
-//                                    val stringData = String(json.siswa)
-//                                    val data = json
-//                                    data.toString()
-//                                    val respondParser = Parser().parse(data.toString()) as JsonObject
-//                                    val respondArray = respondParser.array<JsonObject>("siswa")
+                                !data.isNullOrEmpty() -> {
                                     val arrayList = data?.map {it->
                                         SiswaModel(
                                             it.int("id"),
@@ -275,7 +267,7 @@ class StudentListActivity: AppCompatActivity() {
                                     recyclerView?.adapter = mAdapter
                                     list_siswa?.visibility = View.VISIBLE
                                 }
-                                else -> {
+                                data.isNullOrEmpty() -> {
                                     list_siswa?.visibility = View.GONE
                                     fbM.showToastLong("Data Kosong")
                                 }

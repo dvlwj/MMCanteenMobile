@@ -41,9 +41,9 @@ class SiswaAdapter (private val dataList: ArrayList<SiswaModel>?) : RecyclerView
 //        var siang: TextView = view.findViewById(R.id.student_siang) as TextView
         fun bind(model: SiswaModel){
             name.text = model.name
-            nis.text = model.nis
-            pagi.text = model.pagi
-            siang.text = model.siang
+            nis.text = itemView.resources.getString(R.string.student_nis,model.nis)
+            pagi.text = itemView.resources.getString(R.string.student_pagi,model.pagi)
+            siang.text = itemView.resources.getString(R.string.student_siang,model.siang)
         }
     }
 
