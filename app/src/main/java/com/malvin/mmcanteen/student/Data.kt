@@ -17,5 +17,3 @@ class TahunAjaran(val id: Int, val tahun: String){
 class DataAll(val siswa: List<Siswa>)
 
 class Siswa(val id: Int, val nis: String, val name: String, val kelas_id: Int, val th_ajaran_id: Int, val pagi: String, val siang: String)
-
-//class DataKelas(val status: Int, val kelas: List<Status>)

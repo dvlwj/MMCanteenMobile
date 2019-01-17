@@ -3,23 +3,35 @@ package com.malvin.mmcanteen.student
 import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.Window
 import android.widget.ArrayAdapter
+import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
+import com.beust.klaxon.Parser
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
 import com.malvin.mmcanteen.R
+import com.malvin.mmcanteen.utility.FeedbackManagement
 import com.malvin.mmcanteen.utility.ProgressBarAnimation
 import com.malvin.mmcanteen.utility.ServerAddress
 import com.malvin.mmcanteen.utility.SessionManagement
 import kotlinx.android.synthetic.main.activity_list_student.*
 
 
-
 class StudentListActivity: AppCompatActivity() {
+
+    private var requestArrayList: ArrayList<SiswaModel>? = null
+//    private var siswaModel: ArrayList<SiswaModel>? = null
+
+//    private var siswaList: List<SiswaModel> = ArrayList()
+//    private var recyclerView: RecyclerView? = null
+//    private var mAdapter: SiswaAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +40,7 @@ class StudentListActivity: AppCompatActivity() {
         search_button?.isEnabled = false
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
+        list_siswa?.visibility = View.GONE
         loadKelas(token)
         search_button?.setOnClickListener {
             val kelasID = (spinner_kelas?.selectedItem as Kelas).id
@@ -65,12 +78,6 @@ class StudentListActivity: AppCompatActivity() {
                                 json != null -> {
                                     val data = ArrayList(json.kelas)
                                     data.toArray()
-//                                    val map = data?.map { it->
-//                                        Kelas(
-//                                            it.id,
-//                                            it.name
-//                                        )
-//                                    }
                                     val spinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
                                     spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                                     spinnerKelas?.adapter = spinner
@@ -157,9 +164,6 @@ class StudentListActivity: AppCompatActivity() {
                                     spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                                     spinnerTahun?.adapter = spinner
                                     search_button?.isEnabled = true
-//                                    val idTahunAjaran = json.th_ajaran.id
-//                                    val namaTahunAjaran = json.th_ajaran.tahun
-                                    // lanjutkan disini usahakan buat jadi array untuk membuat spinner
                                 }
                             }
                         }
@@ -221,6 +225,7 @@ class StudentListActivity: AppCompatActivity() {
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}$kelasID/$tahunAjaranID"
+        val fbM = FeedbackManagement(this)
         Fuel.get(address).header("token" to token).timeout(10000).responseJson {
             _,response,result ->
             result.success {
@@ -232,18 +237,47 @@ class StudentListActivity: AppCompatActivity() {
                             val json = Klaxon().parse<DataAll>(respond)
                             when{
                                 json != null -> {
-//                                    val data = arrayOf(json.siswa)
-//                                    val spinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
-//                                    spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//                                    spinnerKelas?.adapter = spinner
-//                                    val id = json.siswa.id
-//                                    val siswa = json.siswa.name
-                                    // lanjutkan load data lain
-                                    // lanjutkan disini usahakan buat jadi array untuk membuat recycle list
-
+//                                    val data = json.toArray()
+//                                    val data = ArrayList(json.siswa)
+//                                    data.toArray()
+                                    val stringBuilder = StringBuilder(respond)
+                                    val respondParser = Parser().parse(stringBuilder) as JsonObject
+                                    val data = respondParser.array<JsonObject>("siswa")
+//                                    val stringData = String(json.siswa)
+//                                    val data = json
+//                                    data.toString()
+//                                    val respondParser = Parser().parse(data.toString()) as JsonObject
+//                                    val respondArray = respondParser.array<JsonObject>("siswa")
+                                    val arrayList = data?.map {it->
+                                        SiswaModel(
+                                            it.int("id"),
+                                            it.string("nis"),
+                                            it.string("name"),
+                                            it.int("kelas_id"),
+                                            it.int("th_ajaran_id"),
+                                            it.string("pagi"),
+                                            it.string("siang")
+                                        )
+                                    }
+                                    requestArrayList = ArrayList(arrayList)
+                                    val recyclerView = list_siswa
+                                    val mAdapter = SiswaAdapter(requestArrayList)
+                                    val layoutManager = LinearLayoutManager(this)
+                                    recyclerView?.layoutManager = layoutManager
+                                    recyclerView?.setHasFixedSize(true)
+                                    recyclerView?.addItemDecoration(
+                                        DividerItemDecoration(
+                                            this,
+                                            LinearLayoutManager.VERTICAL
+                                        )
+                                    )
+                                    recyclerView?.itemAnimator = DefaultItemAnimator()
+                                    recyclerView?.adapter = mAdapter
+                                    list_siswa?.visibility = View.VISIBLE
                                 }
                                 else -> {
-                                    // do something if it null here
+                                    list_siswa?.visibility = View.GONE
+                                    fbM.showToastLong("Data Kosong")
                                 }
                             }
                             search_button?.isEnabled = true

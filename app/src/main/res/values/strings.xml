@@ -43,6 +43,9 @@
     <string name="result_null">QR Code tidak memiliki informasi apapun</string>
     <string name="morning">Pagi</string>
     <string name="noon">Siang</string>
+    <string name="student_nis">NIS : %1$s</string>
+    <string name="student_pagi">Pagi : %1$s</string>
+    <string name="student_siang">Siang : %1$s</string>
     <string name="error">Terjadi Masalah</string>
     <string name="setting">Setting</string>
     <string name="welcome">Selamat datang %1$s.</string>
