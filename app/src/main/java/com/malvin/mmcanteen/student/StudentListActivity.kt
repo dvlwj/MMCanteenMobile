@@ -27,11 +27,6 @@ import kotlinx.android.synthetic.main.activity_list_student.*
 class StudentListActivity: AppCompatActivity() {
 
     private var requestArrayList: ArrayList<SiswaModel>? = null
-//    private var siswaModel: ArrayList<SiswaModel>? = null
-
-//    private var siswaList: List<SiswaModel> = ArrayList()
-//    private var recyclerView: RecyclerView? = null
-//    private var mAdapter: SiswaAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
