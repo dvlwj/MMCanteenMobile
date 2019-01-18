@@ -94,10 +94,9 @@
             android:text="@string/server_config"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/white"
-            android:drawableStart="@drawable/ic_cog"
+            android:drawableStart="@drawable/ic_cog_white"
             android:layout_marginBottom="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"/>
     </LinearLayout>
-
 </ScrollView>

@@ -52,7 +52,6 @@ class MorningActiveScanActivity:AppCompatActivity() {
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
-        val fbM = FeedbackManagement(this)
         Fuel.patch(address, dataServer).header("token" to token).timeout(10000).responseJson {
             _, response, result ->
             result.success {
@@ -65,11 +64,10 @@ class MorningActiveScanActivity:AppCompatActivity() {
                             when{
                                 json != null -> {
                                     val pagi = json.siswa.pagi
-                                    val nisText = resources.getString(R.string.nis_number, nis)
+                                    val nisText = resources.getString(R.string.scan_status_morning, nis, pagi)
                                     nis_number?.visibility = View.VISIBLE
                                     scan_again?.visibility = View.VISIBLE
                                     nis_number?.text = nisText
-                                    fbM.showToastLong("$nis sukses discan : $pagi")
                                 }
                             }
                         }

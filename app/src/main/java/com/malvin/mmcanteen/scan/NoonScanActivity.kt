@@ -52,7 +52,6 @@ class NoonScanActivity:AppCompatActivity() {
         val message = resources.getString(R.string.connection_try_again)
         val yes = resources.getString(R.string.yes)
         val no = resources.getString(R.string.no)
-        val fbM = FeedbackManagement(this)
         Fuel.post(address, dataServer).header("token" to token).timeout(10000).responseJson {
                 _, response, result ->
             result.success {
@@ -61,16 +60,27 @@ class NoonScanActivity:AppCompatActivity() {
                     val respondData = Klaxon().parse<ScanStatus>(respond)
                     when(respondData?.status){
                         1 -> {
-                            val nisText = resources.getString(R.string.nis_number, nis)
+                            val nisText = resources.getString(R.string.scan_success_noon, nis)
                             nis_number?.visibility = View.VISIBLE
                             scan_again?.visibility = View.VISIBLE
                             nis_number?.text = nisText
-                            fbM.showToastLong("$nis sukses diabsen")
+                        }
+                        2 -> {
+                            val nisText = resources.getString(R.string.scan_error, nis)
+                            nis_number?.visibility = View.VISIBLE
+                            scan_again?.visibility = View.VISIBLE
+                            nis_number?.text = nisText
+                        }
+                        3 -> {
+                            val nisText = resources.getString(R.string.scan_failed_status_noon, nis)
+                            nis_number?.visibility = View.VISIBLE
+                            scan_again?.visibility = View.VISIBLE
+                            nis_number?.text = nisText
                         }
                         0 -> {
                             nis_number?.visibility = View.VISIBLE
                             scan_again?.visibility = View.VISIBLE
-                            nis_number?.text = resources.getString(R.string.scan_already, nis)
+                            nis_number?.text = resources.getString(R.string.scan_already_noon, nis)
                         }
                         else -> {
                             val dialog = AlertDialog.Builder(this)

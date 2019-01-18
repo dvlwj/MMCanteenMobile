@@ -18,8 +18,7 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         setContentView(R.layout.activity_dashboard)
-//        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.argb(0,0,0,0)))
-//        supportActionBar?.title = resources.getString(R.string.app_name)
+        supportActionBar?.hide()
         val session = SessionManagement(this)
         val username = session.checkData(session.keyUsername)?.capitalize()
         welcome_text?.text = resources.getString(R.string.welcome,username)
@@ -53,18 +52,4 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this,StudentListActivity::class.java))
         }
     }
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.main_menu, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.menu_main_setting -> {
-////                startActivity(Intent(applicationContext, ServerActivity::class.java))
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 }
