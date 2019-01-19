@@ -11,4 +11,5 @@ object ServerAddress {
     const val StatusSiswa = MainUrl+"siswa/"
     const val Kelas = MainUrl+"siswa/kelas"
     const val TahunAjaran = MainUrl+"siswa/th-ajaran"
+    const val LaporanMakan = MainUrl+"report"
 }

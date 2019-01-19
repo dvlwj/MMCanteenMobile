@@ -24,34 +24,47 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/_3sdp">
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_kelas"
+            <Button
+                android:id="@+id/date_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical">
-            </android.support.v7.widget.AppCompatSpinner>
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_tahun_ajaran"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical">
-            </android.support.v7.widget.AppCompatSpinner>
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                style="?android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/search_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@string/search"
                 android:background="@color/colorAccent"
                 android:textColor="@color/white"
-                android:text="@string/search"/>
+                style="?android:attr/buttonBarButtonStyle"/>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_siswa"
+        <TextView
+            android:id="@+id/period_report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_margin="@dimen/_5sdp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_5sdp">
         </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/total_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textAlignment="textEnd"
+            android:layout_margin="@dimen/_5sdp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>

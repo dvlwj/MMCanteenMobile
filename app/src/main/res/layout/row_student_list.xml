@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal">
     <LinearLayout
+        android:id="@+id/student_row"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"

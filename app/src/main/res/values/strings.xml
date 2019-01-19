@@ -44,6 +44,7 @@
     <string name="student_nis">NIS : %1$s</string>
     <string name="student_pagi">Makan Pagi : %1$s</string>
     <string name="student_siang">Makan Siang : %1$s</string>
+    <string name="report_date_time">%1$s, %2$d</string>
     <string name="error">Terjadi Masalah</string>
     <string name="welcome">Selamat Datang, %1$s.</string>
     <string name="menu_scan">Scan</string>
