@@ -61,5 +61,22 @@
     <string name="menu_student_list">Daftar</string>
     <string name="menu_change_password">Ganti Password</string>
     <string name="process_failed">Proses gagal</string>
+    <string name="currency">Rp %1$s</string>
+    <string name="period">Periode : %1$s</string>
+    <string name="total">Total : Rp %1$s</string>
     <string name="logout">Logout</string>
+    <string-array name="month_list">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
+    </string-array>
 </resources>

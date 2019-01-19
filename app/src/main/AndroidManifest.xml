@@ -72,7 +72,7 @@
         <activity android:name=".report.ReportActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value=".student.StudentListActivity"/>
         </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
