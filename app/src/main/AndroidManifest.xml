@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.malvin.mmcanteen">
+    package="com.kantinmaitreya.meilvin">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <application
@@ -16,68 +16,68 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".splashscreen.SplashcreenActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.splashscreen.SplashcreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"/>
-        <activity android:name=".serversetting.ServerActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.login.LoginActivity"/>
+        <activity android:name="com.kantinmaitreya.meilvin.serversetting.ServerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".login.LoginActivity"/>
+                android:value="com.kantinmaitreya.meilvin.login.LoginActivity"/>
         </activity>
-        <activity android:name=".dashboard.DashboardActivity"/>
-        <activity android:name=".changepassword.ChangePasswordActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
+        <activity android:name="com.kantinmaitreya.meilvin.changepassword.ChangePasswordActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.MorningScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.MorningScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.NoonScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.NoonScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.MorningActiveScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.MorningActiveScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.NoonActiveScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.NoonActiveScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.MorningNonActiveScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.MorningNonActiveScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".scan.NoonNonActiveScanActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.scan.NoonNonActiveScanActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".student.StudentListActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.student.StudentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".register.StudentRegisterActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.register.StudentRegisterActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".dashboard.DashboardActivity"/>
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
-        <activity android:name=".report.ReportActivity">
+        <activity android:name="com.kantinmaitreya.meilvin.report.ReportActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".student.StudentListActivity"/>
+                android:value="com.kantinmaitreya.meilvin.student.StudentListActivity"/>
         </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
