@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:focusable="true"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:baselineAligned="false">
     <LinearLayout
         android:id="@+id/student_row"
         android:layout_width="0dp"

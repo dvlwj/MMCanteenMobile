@@ -7,6 +7,7 @@ import android.view.Window
 import com.malvin.mmcanteen.R
 import com.malvin.mmcanteen.changepassword.ChangePasswordActivity
 import com.malvin.mmcanteen.login.LoginActivity
+import com.malvin.mmcanteen.register.StudentRegisterActivity
 import com.malvin.mmcanteen.scan.*
 import com.malvin.mmcanteen.student.StudentListActivity
 import com.malvin.mmcanteen.utility.SessionManagement
@@ -50,6 +51,9 @@ class DashboardActivity : AppCompatActivity() {
         }
         menu_student_list?.setOnClickListener {
             startActivity(Intent(this,StudentListActivity::class.java))
+        }
+        menu_student_register?.setOnClickListener {
+            startActivity(Intent(this,StudentRegisterActivity::class.java))
         }
     }
 }

@@ -30,18 +30,12 @@ class SiswaAdapter (private val dataList: ArrayList<SiswaModel>?) : RecyclerView
         return dataList?.size ?: 0
     }
 
-//    private var siswaList: MutableList<SiswaModel>? = null
-
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var row = view.student_row
         var name: TextView = view.student_name
         var nis: TextView = view.student_nis
         private var pagi: TextView = view.student_pagi
         private var siang: TextView = view.student_siang
-//        var name: TextView = view.findViewById(R.id.student_name) as TextView
-//        var nis: TextView = view.findViewById(R.id.student_nis) as TextView
-//        var pagi: TextView = view.findViewById(R.id.student_pagi) as TextView
-//        var siang: TextView = view.findViewById(R.id.student_siang) as TextView
         fun bind(model: SiswaModel){
             name.text = model.name
             nis.text = itemView.resources.getString(R.string.student_nis,model.nis)
@@ -50,27 +44,9 @@ class SiswaAdapter (private val dataList: ArrayList<SiswaModel>?) : RecyclerView
             row.setOnClickListener {
                 val intent = Intent(itemView.context, ReportActivity::class.java)
                 intent.putExtra("NIS", model.nis)
+                intent.putExtra("NOHP", model.no_hp)
                 itemView.context.startActivity(intent)
             }
         }
     }
-
-//    fun SiswaAdapter(siswaList: MutableList<SiswaModel>){
-//        this.siswaList = siswaList
-//    }
-
-
-
-//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val movie = siswaList?.get(position)
-//        holder.name.text = movie?.getName()
-//        holder.nis.text = movie?.getNis()
-//        holder.pagi.text = movie?.getPagi()
-//        holder.siang.text = movie?.getSiang()
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return siswaList?.size ?: 0
-////        return data.size
-//    }
 }

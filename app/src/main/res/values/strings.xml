@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MMCanteen</string>
+    <string name="app_name">Kantin Maitreya</string>
     <string name="chevron_right">chevron_right</string>
     <string name="username_hint">Username anda</string>
     <string name="username_empty">Username belum diisi</string>
@@ -44,7 +44,23 @@
     <string name="student_nis">NIS : %1$s</string>
     <string name="student_pagi">Makan Pagi : %1$s</string>
     <string name="student_siang">Makan Siang : %1$s</string>
+    <string name="student_phone">No. HP : %1$s</string>
     <string name="report_date_time">%1$s, %2$d</string>
+    <string name="register_nis">NIS</string>
+    <string name="register_name">Nama</string>
+    <string name="register_nohp">No. Hp</string>
+    <string name="register_kelas">Kelas</string>
+    <string name="register_tahun">Tahun Ajaran</string>
+    <string name="register_pagi">Pagi</string>
+    <string name="register_siang">Siang</string>
+    <string name="register_nis_empty">NIS tidak boleh kosong !</string>
+    <string name="register_name_empty">Nama tidak boleh kosong !</string>
+    <string name="register_nohp_empty">No. Hp tidak boleh kosong !</string>
+    <string name="register_kelas_empty">Kelas tidak boleh kosong !</string>
+    <string name="register_tahun_empty">Tahun Ajaran tidak boleh kosong !</string>
+    <string name="register_status_empty">Siswa harus makan di pagi atau siang hari !</string>
+    <string name="register_nis_exist">NIS sudah terdaftar !</string>
+    <string name="register_success">Siswa yang bernama %1$s dengan NIS : %2$s sukses didaftarkan</string>
     <string name="error">Terjadi Masalah</string>
     <string name="welcome">Selamat Datang, %1$s.</string>
     <string name="menu_scan">Scan</string>
@@ -58,7 +74,8 @@
     <string name="menu_noon_active">Aktif Siang</string>
     <string name="menu_morning_non_active">Non Aktif Pagi</string>
     <string name="menu_noon_non_active">Non Aktif Siang</string>
-    <string name="menu_student_list">Daftar</string>
+    <string name="menu_student_list">List</string>
+    <string name="menu_student_register">Registrasi</string>
     <string name="menu_change_password">Ganti Password</string>
     <string name="process_failed">Proses gagal</string>
     <string name="currency">Rp %1$s</string>

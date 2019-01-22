@@ -79,6 +79,16 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/_12sdp"
+                    android:drawableStart="@drawable/ic_phone_square"
+                    android:drawablePadding="@dimen/_5sdp"/>
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/list_report"
                     android:layout_width="match_parent"
