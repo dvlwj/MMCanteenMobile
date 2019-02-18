@@ -64,6 +64,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
         </activity>
+        <activity android:name="com.kantinmaitreya.meilvin.scan.MorningNormalScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name="com.kantinmaitreya.meilvin.scan.MorningJumboScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name="com.kantinmaitreya.meilvin.scan.NoonNormalScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
+        </activity>
+        <activity android:name="com.kantinmaitreya.meilvin.scan.NoonJumboScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kantinmaitreya.meilvin.dashboard.DashboardActivity"/>
+        </activity>
         <activity android:name="com.kantinmaitreya.meilvin.student.StudentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
