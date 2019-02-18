@@ -111,10 +111,26 @@
                     android:padding="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"/>
                 <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/register_porsi_pagi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_porsi_pagi"
+                    android:textSize="@dimen/_14ssp"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"/>
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/register_siang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/register_siang"
+                    android:textSize="@dimen/_14ssp"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"/>
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/register_porsi_siang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_porsi_siang"
                     android:textSize="@dimen/_14ssp"
                     android:padding="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"/>

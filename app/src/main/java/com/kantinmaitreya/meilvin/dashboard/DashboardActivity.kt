@@ -55,5 +55,17 @@ class DashboardActivity : AppCompatActivity() {
         menu_student_register?.setOnClickListener {
             startActivity(Intent(this,StudentRegisterActivity::class.java))
         }
+        menu_morning_normal?.setOnClickListener {
+            startActivity(Intent(this,MorningNormalScanActivity::class.java))
+        }
+        menu_morning_jumbo?.setOnClickListener {
+            startActivity(Intent(this,MorningJumboScanActivity::class.java))
+        }
+        menu_noon_normal?.setOnClickListener {
+            startActivity(Intent(this,NoonNormalScanActivity::class.java))
+        }
+        menu_noon_jumbo?.setOnClickListener {
+            startActivity(Intent(this,NoonJumboScanActivity::class.java))
+        }
     }
 }

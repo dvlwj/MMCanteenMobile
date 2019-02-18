@@ -83,13 +83,13 @@
                         android:layout_margin="@dimen/_5sdp"
                         style="?android:attr/buttonBarButtonStyle"/>
                 </LinearLayout>
-                 <TextView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/menu_status"
-                     android:textSize="@dimen/_12ssp"
-                     android:textColor="@color/black"
-                     android:layout_marginTop="@dimen/_17sdp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_status"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_17sdp"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -149,6 +149,90 @@
                         android:layout_weight="1"
                         android:elevation="0dp"
                         android:text="@string/menu_noon_non_active"
+                        android:background="@color/livingOrange"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_margin="@dimen/_5sdp"
+                        style="?android:attr/buttonBarButtonStyle"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_morning_portion"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_17sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    style="?android:attr/buttonBarStyle">
+                    <Button
+                        android:id="@+id/menu_morning_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/menu_portion_normal"
+                        android:background="@color/livingPink"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_margin="@dimen/_5sdp"
+                        style="?android:attr/buttonBarButtonStyle"/>
+                    <Button
+                        android:id="@+id/menu_morning_jumbo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/menu_portion_jumbo"
+                        android:background="@color/livingOrange"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_margin="@dimen/_5sdp"
+                        style="?android:attr/buttonBarButtonStyle"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_noon_portion"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_17sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    style="?android:attr/buttonBarStyle">
+                    <Button
+                        android:id="@+id/menu_noon_normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/menu_portion_normal"
+                        android:background="@color/livingPink"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_margin="@dimen/_5sdp"
+                        style="?android:attr/buttonBarButtonStyle"/>
+                    <Button
+                        android:id="@+id/menu_noon_jumbo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/menu_portion_jumbo"
                         android:background="@color/livingOrange"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12ssp"

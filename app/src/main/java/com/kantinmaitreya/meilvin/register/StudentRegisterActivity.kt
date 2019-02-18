@@ -208,6 +208,8 @@ class StudentRegisterActivity:AppCompatActivity() {
         val nohp = register_nohp?.text
         val pagi = register_pagi?.isChecked
         val siang = register_siang?.isChecked
+        val porsiPagi = register_porsi_pagi?.isChecked
+        val porsiSiang = register_porsi_siang?.isChecked
         val aktif = "aktif"
         val nonaktif = "non aktif"
         val fbM = FeedbackManagement(this)
@@ -246,16 +248,20 @@ class StudentRegisterActivity:AppCompatActivity() {
             }
             else -> {
                 when {
-                    pagi == true && siang == false -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),aktif,nonaktif)
-                    pagi == false && siang == true -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),nonaktif,aktif)
-                    pagi == true && siang == true -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),aktif,aktif)
+                    pagi == true && siang == false -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),aktif,nonaktif,porsiPagi,porsiSiang)
+                    pagi == false && siang == true -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),nonaktif,aktif,porsiPagi,porsiSiang)
+                    pagi == true && siang == true -> sendForm(kelasID,tahunAjaranID,nis.toString(),nama.toString(),nohp.toString(),aktif,aktif,porsiPagi,porsiSiang)
                 }
             }
         }
     }
 
-    private fun sendForm(kelas: Int,tahunAjaran: Int,nis: String, nama: String, nohp: String, pagi: String, siang: String){
+    private fun sendForm(kelas: Int,tahunAjaran: Int,nis: String, nama: String, nohp: String, pagi: String, siang: String, porsi_pagi: Boolean?, porsi_siang: Boolean?){
+        var valuePorsiPagi = 0
+        var valuePorsiSiang = 0
         button_confirm?.isEnabled = false
+        when(porsi_pagi) { true -> valuePorsiPagi = 1}
+        when(porsi_siang) { true -> valuePorsiSiang = 1}
         progressbar?.visibility = View.VISIBLE
         val anim = ProgressBarAnimation(progressbar, 0.toFloat(), 100.toFloat())
         anim.duration = 1000
@@ -268,7 +274,7 @@ class StudentRegisterActivity:AppCompatActivity() {
         val session = SessionManagement(this)
         val token = session.checkData(session.keyToken).toString()
         val address = "${ServerAddress.http}${session.checkServerAddress(session.keyServerAddress)}${ServerAddress.StatusSiswa}"
-        val dataServer = listOf("nis" to nis, "name" to nama, "no_hp" to nohp, "kelas_id" to kelas, "th_ajaran_id" to tahunAjaran, "pagi" to pagi, "siang" to siang)
+        val dataServer = listOf("nis" to nis, "name" to nama, "no_hp" to nohp, "kelas_id" to kelas, "th_ajaran_id" to tahunAjaran, "pagi" to pagi, "siang" to siang, "porsi_pagi" to valuePorsiPagi, "porsi_siang" to valuePorsiSiang)
         Fuel.post(address, dataServer).header("token" to token).timeout(10000).responseJson { _, response, result ->
             result.success {
                 try {
@@ -322,7 +328,7 @@ class StudentRegisterActivity:AppCompatActivity() {
                         finish()
                     }
                     dialog.setPositiveButton(yes) { DialogInterface, _ ->
-                        sendForm(kelas, tahunAjaran, nis, nama, nohp, pagi, siang)
+                        sendForm(kelas, tahunAjaran, nis, nama, nohp, pagi, siang,porsi_pagi,porsi_siang)
                         DialogInterface.dismiss()
                     }
                     dialog.create().show()
@@ -338,7 +344,7 @@ class StudentRegisterActivity:AppCompatActivity() {
                     finish()
                 }
                 dialog.setPositiveButton(yes) { DialogInterface, _ ->
-                    sendForm(kelas, tahunAjaran, nis, nama, nohp, pagi, siang)
+                    sendForm(kelas, tahunAjaran, nis, nama, nohp, pagi, siang,porsi_pagi,porsi_siang)
                     DialogInterface.dismiss()
                 }
                 dialog.create().show()

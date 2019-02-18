@@ -36,6 +36,7 @@
     <string name="scan_success_noon">Siswa dengan NIS : %1$s sukses discan tidak makan pada siang hari</string>
     <string name="scan_already_morning">Siswa dengan NIS : %1$s sudah pernah di scan tidak makan pada pagi hari</string>
     <string name="scan_already_noon">Siswa dengan NIS : %1$s sudah pernah di scan tidak makan pada siang hari</string>
+    <string name="scan_portion">Siswa dengan NIS : %1$s sukses discan untuk merubah porsi %2$s menjadi %3$s</string>
     <string name="scan_failed">Siswa dengan NIS : %1$s gagal di scan</string>
     <string name="scan_failed_status_morning">Status makan siswa dengan %1$s pada waktu pagi dalam kondisi non-aktif atau tidak ditemukan</string>
     <string name="scan_failed_status_noon">Status makan siswa dengan %1$s pada waktu siang dalam kondisi non-aktif atau tidak ditemukan</string>
@@ -51,8 +52,10 @@
     <string name="register_nohp">No. Hp</string>
     <string name="register_kelas">Kelas</string>
     <string name="register_tahun">Tahun Ajaran</string>
-    <string name="register_pagi">Pagi</string>
-    <string name="register_siang">Siang</string>
+    <string name="register_pagi">Makan Pagi</string>
+    <string name="register_siang">Makan Siang</string>
+    <string name="register_porsi_pagi">Pagi Jumbo</string>
+    <string name="register_porsi_siang">Siang Jumbo</string>
     <string name="register_nis_empty">NIS tidak boleh kosong !</string>
     <string name="register_name_empty">Nama tidak boleh kosong !</string>
     <string name="register_nohp_empty">No. Hp tidak boleh kosong !</string>
@@ -66,6 +69,8 @@
     <string name="menu_scan">Scan</string>
     <string name="menu_absen">Absen Tidak Makan</string>
     <string name="menu_status">Status</string>
+    <string name="menu_morning_portion">Porsi Pagi</string>
+    <string name="menu_noon_portion">Porsi Siang</string>
     <string name="menu_config">Konfigurasi</string>
     <string name="menu_siswa">Siswa</string>
     <string name="menu_morning">Pagi</string>
@@ -74,6 +79,8 @@
     <string name="menu_noon_active">Aktif Siang</string>
     <string name="menu_morning_non_active">Non Aktif Pagi</string>
     <string name="menu_noon_non_active">Non Aktif Siang</string>
+    <string name="menu_portion_normal">Normal</string>
+    <string name="menu_portion_jumbo">Jumbo</string>
     <string name="menu_student_list">List</string>
     <string name="menu_student_register">Registrasi</string>
     <string name="menu_change_password">Ganti Password</string>
